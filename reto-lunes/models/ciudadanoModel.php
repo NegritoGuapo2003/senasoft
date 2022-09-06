@@ -216,4 +216,11 @@
 
         }
 
+        public function login(){
+
+            $sql = "SELECT * FROM ciudadanos WHERE ciu_email = {$this->getEmail()} AND  ciu_codigo_validacion = {$this->getCodigoValidacion}";
+            
+
+        }
+
     }

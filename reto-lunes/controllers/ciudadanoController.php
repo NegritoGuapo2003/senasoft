@@ -26,4 +26,10 @@
 
         }
 
+        public function registro(){
+
+            require_once 'views/ciudadano/registro.php';
+
+        }
+
     }

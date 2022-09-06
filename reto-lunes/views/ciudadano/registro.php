@@ -59,6 +59,47 @@
         <option value="disc3">Discapacidad 3</option>
     </select>
 
+    <label for="Estrato">Estrato: </label> 
+    <select name="" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+
+    <label for="educacion">Nivel Educativo:</label> 
+    <select name="" id="">
+        <option value="1">Bachiller</option>
+        <option value="2">Tecnico</option>
+        <option value="3">Tecnologo</option>
+        <option value="3">Profesional</option>
+    </select>
+
+    <label for="dispostivos">tiene acceso a dispositivos tecnologicos?:</label> 
+    <select name="" id="">
+        <option value="1">Si</option>
+        <option value="2">No</option>
+    </select>
+
+    <!-- asignamos atributo multiple a la etiqueta select por que es posible seleccionar varias opciones -->
+    <label for="dispostivos">si la respuesta anterior fue afirmativa ¿cual o cuales son los dispositivos?:</label> 
+    <select name="dispositivos" id="" multiple>
+        <option value="1">T. Movil</option>
+        <option value="2">Computador</option>
+        <option value="3">Tablet</option>
+        <option value="4">Otro</option>
+    </select>
+
+    <label for="internet">¿cuenta con acceso a internet?:</label> 
+    <select name="internet" id="" multiple>
+        <option value="1">Si</option>
+        <option value="2">No</option>
+    </select>
+
+    <label for="regimen">Regimen de afiliacion</label> 
+    <select name="regimen" id="" multiple>
+        <option value="1">Subcidiado</option>
+        <option value="2">Contributivo</option>
+    </select>
 
     
     <input type="submit" value="Enviar">

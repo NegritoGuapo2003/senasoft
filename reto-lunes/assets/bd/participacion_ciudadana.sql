@@ -66,7 +66,6 @@ CREATE TABLE `tblciudadano` (
   `ciu_documento` varchar(11) NOT NULL,
   `ciu_nombre` varchar(50) NOT NULL,
   `ciu_apellidos` varchar(50) NOT NULL,
-  `se_codigo` int(11) NOT NULL,
   `ciu_telefono_fijo` varchar(20) DEFAULT NULL,
   `ciu_celular` varchar(20) DEFAULT NULL,
   `ciu_email` varchar(50) NOT NULL,

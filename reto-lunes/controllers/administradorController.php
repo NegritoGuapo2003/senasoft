@@ -17,7 +17,7 @@
         public function index(){
 
             $admin = new CiudadanoModel();
-            $ciudadanos = $admin->getAdmins();
+            
 
             var_dump($_POST);
             die();

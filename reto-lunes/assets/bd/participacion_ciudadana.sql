@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-09-2022 a las 19:56:50
+-- Tiempo de generación: 07-09-2022 a las 00:25:59
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -74,8 +74,8 @@ CREATE TABLE `tblciudadano` (
   `bv_codigo` int(11) NOT NULL,
   `ciu_fecha_nacimiento` date NOT NULL,
   `et_codigo` int(11) NOT NULL,
-  `cd_codigo` int(11) NOT NULL,
-  `ciu_estrato` varchar(1) NOT NULL,
+  `con_codigo` int(11) NOT NULL,
+  `ciu_estrato` int(1) NOT NULL,
   `ne_codigo` int(11) NOT NULL,
   `ciu_acceso_dispositivos` varchar(2) NOT NULL,
   `ta_codigo` int(11) NOT NULL,

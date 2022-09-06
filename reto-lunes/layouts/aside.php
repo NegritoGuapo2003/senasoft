@@ -2,7 +2,7 @@
     <div class="details-aside">
         <form action="<?=url('ciudadano','login'); ?>" method="post">
             <label for="">Tipo de documento: </label>
-            <select name="" id="">
+            <select name="tipo_documento" id="">
                 <option value="cedula_ciudadania">Cedula de Ciudadania</option>
                 <option value="tarjeta_identidad">Tarjeta de Identidad</option>
                 <option value="cedula_extranjeria">Cedula de Extranjería</option>

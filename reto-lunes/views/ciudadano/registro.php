@@ -1,4 +1,4 @@
-<form action="<?=url('ciudadano','registro'); ?>" method="post">
+<form action="<?=url('ciudadano','guardar'); ?>" method="post">
 
     <label for="">Tipo de documento: </label>
     <select name="" id="">

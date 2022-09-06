@@ -9,8 +9,8 @@
             if(isset($_POST)){
                 
                 $tipo_documento = isset($_POST['tipo_documento']) ? $_POST['tipo_documento'] : "" ;
-                $documento = isset($_POST['documento']) ? $_POST['documento'] : "" ;
-                $codigo = isset($_POST['codigo']) ? $_POST['codigo'] : "" ;
+                $documento = isset($_POST['documento']) ? (int)$_POST['documento'] : "" ;
+                $codigo = isset($_POST['codigo']) ? (int)$_POST['codigo'] : "" ;
 
                 //ARRAY QUE MOSTRARÁ LOS POSIBLES ERRORES
                 $errores = array();
@@ -30,7 +30,7 @@
                 }
 
                 //VALIDACION PARA EL TIPO DEL DOCUMENTO
-                if(!is_int($codigo) && !empty($codigo)){
+                if(is_int($codigo) && !empty($codigo)){
                     $codigo_validado = true;
                 }else{
                     $errores['codigo'] = "Codigo no valido";
@@ -40,13 +40,9 @@
 
                     $ciudadano = new CiudadanoModel();
                     
-                    var_dump($ciudadano->getCiudadanos());
+                    
 
                 }
-
-                var_dump($errores);
-                var_dump($documento);
-                die();
 
             }
 
@@ -69,5 +65,12 @@
             require_once 'views/ciudadano/registro.php';
 
         }
+
+        public function guardar(){
+
+            echo "Guardado";
+
+        }
+
 
     }

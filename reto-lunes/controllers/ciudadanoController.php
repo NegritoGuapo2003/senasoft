@@ -6,9 +6,12 @@
 
         public function login(){
 
-            var_dump($_POST);
-            die();
-            
+            if(isset($_POST)){
+                
+                
+
+            }
+
         }
 
         public function index(){

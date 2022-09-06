@@ -15,6 +15,7 @@
         private $fecha_nacimiento;
         private $codigo_etnia;
         private $codigo_condicion;
+        private $estrato;
         private $codigo_nivel_educativo;
         private $acceso_dispositivos;
         private $codigo_tipos_acceso;
@@ -112,13 +113,94 @@
             $this->codigo_barrio_vereda = $codigo_barrio_vereda;
         }
 
-        //GET Y SET PARA EL DOCUMENTO
+        //GET Y SET PARA LA FECHA DE NACIMIENTO
         public function getFechaNacimiento(){
             $this->fecha_nacimiento;
         }
 
         public function setFechaNacimiento($fecha_nacimiento){
             $this->fecha_nacimiento = $fecha_nacimiento;
+        }
+
+        //GET Y SET PARA LA ETNIA
+        public function getCodigoEtnia(){
+            $this->codigo_etnia;
+        }
+
+        public function setCodigoEtnia($codigo_etnia){
+            $this->codigo_etnia = $codigo_etnia;
+        }
+
+        //GET Y SET PARA EL DOCUMENTO
+        public function getCodigoCondicion(){
+            $this->codigo_condicion;
+        }
+
+        public function setCodigoCondicion($codigo_condicion){
+            $this->codigo_condicion = $codigo_condicion;
+        }
+
+        //GET Y SET PARA EL ESTRATO
+        public function getEstrato(){
+            $this->estrato;
+        }
+
+        public function setEstrato($estrato){
+            $this->estrato = $estrato;
+        }
+
+        //GET Y SET PARA EL NIVEL EDUCATIVO
+        public function getNivelEducativo(){
+            $this->codigo_nivel_educativo;
+        }
+
+        public function setNivelEducativo($codigo_nivel_educativo){
+            $this->codigo_nivel_educativo = $codigo_nivel_educativo;
+        }
+
+        //GET Y SET PARA EL ACCESO A DISPOSITIVOS
+        public function getAccesoDispositivos(){
+            $this->acceso_dispositivos;
+        }
+
+        public function setAccesoDispositivos($acceso_dispositivos){
+            $this->acceso_dispositivos = $acceso_dispositivos;
+        }
+
+        //GET Y SET PARA LA DIRECCION
+        public function getCodigoTiposAcceso(){
+            $this->codigo_tipos_acceso;
+        }
+
+        public function setCodigoTiposAcceso($codigo_tipos_acceso){
+            $this->codigo_tipos_acceso = $codigo_tipos_acceso;
+        }
+
+        //GET Y SET PARA LA ACCESO INTERNET
+        public function getAccesoInternet(){
+            $this->acceso_internet;
+        }
+
+        public function setAccesoInternet($acceso_internet){
+            $this->acceso_internet = $acceso_internet;
+        }
+
+        //GET Y SET PARA LA EL REGIMEN
+        public function getCodigoRegimen(){
+            $this->codigo_regimen;
+        }
+
+        public function setCodigoRegimen($codigo_regimen){
+            $this->codigo_regimen = $codigo_regimen;
+        }
+
+        //GET Y SET PARA LA EL CODIGO DE VALIDACION
+        public function getCodigoValidacion(){
+            $this->codigo_validacion;
+        }
+
+        public function setCodigoValidacion($codigo_validacion){
+            $this->codigo_validacion = $codigo_validacion;
         }
 
 

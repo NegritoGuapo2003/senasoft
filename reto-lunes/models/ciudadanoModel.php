@@ -21,6 +21,7 @@
         private $acceso_internet;
         private $codigo_regimen;
         private $codigo_validacion;
+        private $db;
 
 
 
@@ -35,7 +36,7 @@
         }
 
         public function setTipoDocumento($tipo_documento){
-            $this->tipo_documento = $tipo_documento;
+            $this->tipo_documento = $this->db->real_escape_string($tipo_documento);
         }
 
         //GET Y SET PARA EL DOCUMENTO
@@ -44,7 +45,7 @@
         }
 
         public function setDocumento($documento){
-            $this->documento = $documento;
+            $this->documento = $this->db->real_escape_string($documento);
         }
 
         //GET Y SET PARA EL NOMBRE
@@ -53,7 +54,7 @@
         }
 
         public function setNombre($nombre){
-            $this->nombre = $nombre;
+            $this->nombre = $this->db->real_escape_string($nombre);
         }
 
         //GET Y SET PARA LOS APELLIDOS
@@ -62,7 +63,7 @@
         }
 
         public function setApellidos($apellidos){
-            $this->apellidos = $apellidos;
+            $this->apellidos = $this->db->real_escape_string($apellidos);
         }
 
         //GET Y SET PARA EL TELEFONO FIJO
@@ -71,7 +72,7 @@
         }
 
         public function setTelefonoFijo($telefono_fijo){
-            $this->telefono_fijo = $telefono_fijo;
+            $this->telefono_fijo = $this->db->real_escape_string($telefono_fijo);
         }
 
         //GET Y SET PARA EL CELULAR
@@ -80,7 +81,7 @@
         }
 
         public function setCelular($celular){
-            $this->celular = $celular;
+            $this->celular = $this->db->real_escape_string($celular);
         }
 
         //GET Y SET PARA EL EMAIL
@@ -89,7 +90,7 @@
         }
 
         public function setEmail($email){
-            $this->email = $email;
+            $this->email = $this->db->real_escape_string($email);
         }
 
         //GET Y SET PARA EL CODIGO DEL MUNICIPIO
@@ -98,7 +99,7 @@
         }
 
         public function setCodigoMunicipio($codigo_municipio){
-            $this->codigo_municipio = $codigo_municipio;
+            $this->codigo_municipio = $this->db->real_escape_string($codigo_municipio);
         }
 
         //GET Y SET PARA LA DIRECCION
@@ -107,7 +108,7 @@
         }
 
         public function setDireccion($direccion){
-            $this->direccion = $direccion;
+            $this->direccion = $this->db->real_escape_string($direccion);
         }
 
         //GET Y SET PARA EL CODIGO DEL BARRIO/VEREDA
@@ -116,7 +117,7 @@
         }
 
         public function setCodigoBarrioVereda($codigo_barrio_vereda){
-            $this->codigo_barrio_vereda = $codigo_barrio_vereda;
+            $this->codigo_barrio_vereda = $this->db->real_escape_string($codigo_barrio_vereda);
         }
 
         //GET Y SET PARA LA FECHA DE NACIMIENTO
@@ -125,7 +126,7 @@
         }
 
         public function setFechaNacimiento($fecha_nacimiento){
-            $this->fecha_nacimiento = $fecha_nacimiento;
+            $this->fecha_nacimiento = $this->db->real_escape_string($fecha_nacimiento);
         }
 
         //GET Y SET PARA LA ETNIA
@@ -134,7 +135,7 @@
         }
 
         public function setCodigoEtnia($codigo_etnia){
-            $this->codigo_etnia = $codigo_etnia;
+            $this->codigo_etnia = $this->db->real_escape_string($codigo_etnia);
         }
 
         //GET Y SET PARA EL DOCUMENTO
@@ -143,7 +144,7 @@
         }
 
         public function setCodigoCondicion($codigo_condicion){
-            $this->codigo_condicion = $codigo_condicion;
+            $this->codigo_condicion = $this->db->real_escape_string($codigo_condicion);
         }
 
         //GET Y SET PARA EL ESTRATO
@@ -152,7 +153,7 @@
         }
 
         public function setEstrato($estrato){
-            $this->estrato = $estrato;
+            $this->estrato = $this->db->real_escape_string($estrato);
         }
 
         //GET Y SET PARA EL NIVEL EDUCATIVO
@@ -161,7 +162,7 @@
         }
 
         public function setNivelEducativo($codigo_nivel_educativo){
-            $this->codigo_nivel_educativo = $codigo_nivel_educativo;
+            $this->codigo_nivel_educativo = $this->db->real_escape_string($codigo_nivel_educativo);
         }
 
         //GET Y SET PARA EL ACCESO A DISPOSITIVOS
@@ -170,7 +171,7 @@
         }
 
         public function setAccesoDispositivos($acceso_dispositivos){
-            $this->acceso_dispositivos = $acceso_dispositivos;
+            $this->acceso_dispositivos = $this->db->real_escape_string($acceso_dispositivos);
         }
 
         //GET Y SET PARA LA DIRECCION
@@ -179,7 +180,7 @@
         }
 
         public function setCodigoTiposAcceso($codigo_tipos_acceso){
-            $this->codigo_tipos_acceso = $codigo_tipos_acceso;
+            $this->codigo_tipos_acceso = $this->db->real_escape_string($codigo_tipos_acceso);
         }
 
         //GET Y SET PARA LA ACCESO INTERNET
@@ -188,7 +189,7 @@
         }
 
         public function setAccesoInternet($acceso_internet){
-            $this->acceso_internet = $acceso_internet;
+            $this->acceso_internet = $this->db->real_escape_string($acceso_internet);
         }
 
         //GET Y SET PARA LA EL REGIMEN
@@ -197,16 +198,17 @@
         }
 
         public function setCodigoRegimen($codigo_regimen){
-            $this->codigo_regimen = $codigo_regimen;
+            $this->codigo_regimen = $this->db->real_escape_string($codigo_regimen);
         }
 
         //GET Y SET PARA LA EL CODIGO DE VALIDACION
         public function getCodigoValidacion(){
-            $this->codigo_validacion;
+            return $encrypt = password_hash($this->codigo_validacion, PASSWORD_BCRYPT, ['cost' => 4]);
+
         }
 
         public function setCodigoValidacion($codigo_validacion){
-            $this->codigo_validacion = $codigo_validacion;
+            $this->codigo_validacion = $this->db->real_escape_string($codigo_validacion);
         }
 
         //Funciones para bases de datos
@@ -216,6 +218,23 @@
             $ciudadano = $this->db->query("$sql");
 
             return $ciudadano;
+
+        }
+
+        public function guardarCiudadano(){
+
+            $sql = "INSERT INTO tblciudadano VALUES('{$this->tipo_documento}','{$this->documento}','{$this->nombre}','{$this->apellidos}','{$this->telefono_fijo}','{$this->celular}','{$this->email}',{$this->codigo_municipio},'{$this->direccion}',{$this->codigo_barrio_vereda},'{$this->fecha_nacimiento}',{$this->codigo_etnia},{$this->codigo_condicion},{$this->estrato},{$this->codigo_nivel_educativo},'{$this->acceso_dispositivos}',{$this->codigo_tipos_acceso},'{$this->acceso_internet}',{$this->codigo_regimen},'{$this->getCodigoValidacion()}')";
+            var_dump($sql);
+            var_dump($this->db->error);
+            $guardar = $this->db->query($sql);
+            
+            $validado = false;
+            
+            if($guardar){
+                $validado = true;
+            }
+
+            return $validado;
 
         }
 

@@ -243,7 +243,36 @@
                 }
 
                 if(count($errores) == 0){
-                    echo "melo";
+                    
+                    var_dump($_POST);
+
+                    $codigo_validacion = rand(10000,99999);
+
+                    $ciudadano = new CiudadanoModel();
+                    $ciudadano->setTipoDocumento($tipo_documento);
+                    $ciudadano->setDocumento($cedula);
+                    $ciudadano->setNombre($nombre);
+                    $ciudadano->setApellidos($apellidos);
+                    $ciudadano->setTelefonoFijo($telefono_fijo);
+                    $ciudadano->setCelular($celular);
+                    $ciudadano->setemail($email);
+                    $ciudadano->setCodigoMunicipio($municipio);
+                    $ciudadano->setCodigoBarrioVereda($barrio_vereda);
+                    $ciudadano->setDireccion($direccion);
+                    $ciudadano->setFechaNacimiento($nacimiento);
+                    $ciudadano->setCodigoEtnia($etnia);
+                    $ciudadano->setCodigoCondicion($discapacidad);
+                    $ciudadano->setEstrato($estrato);
+                    $ciudadano->setNivelEducativo($nivel_educacion);
+                    $ciudadano->setAccesoDispositivos($acceso_dispositivos);
+                    $ciudadano->setCodigoTiposAcceso($dispositivos);
+                    $ciudadano->setAccesoInternet($internet);
+                    $ciudadano->setCodigoRegimen($regimen);
+                    $ciudadano->setCodigoValidacion($codigo_validacion);
+                    $ciudadano->guardarCiudadano();
+
+                    var_dump($ciudadano);
+
                 }else{
                     var_dump($errores);
                 }

@@ -75,7 +75,7 @@
 
         public function index(){
 
-            echo "Hola";
+            require_once "views/ciudadano/index.php";
 
         }
 

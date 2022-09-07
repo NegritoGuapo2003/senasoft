@@ -11,7 +11,8 @@
             $this->db = Conexion::conectar();
         }
 
-        //GET Y SET PARA EL CODIGO
+
+        // GET Y SET PARA CODIGO
         public function getCodigo(){
             return $this->codigo;
         }
@@ -20,12 +21,13 @@
             $this->codigo = $this->db->real_escape_string($codigo);
         }
 
-        //GET Y SET PARA EL NOMBRE
+        //GET Y SET PARA NOMBRE
         public function getNombre(){
             return $this->nombre;
         }
 
         public function setNombre($nombre){
+
             $this->nombre = $this->db->real_escape_string($nombre);
         }
 

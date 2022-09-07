@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2022 a las 18:15:04
+-- Tiempo de generación: 07-09-2022 a las 22:23:45
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -219,8 +219,6 @@ CREATE TABLE `tblsexo` (
 CREATE TABLE `tblsondeo` (
   `so_codigo` int(11) NOT NULL,
   `so_nombre` varchar(800) NOT NULL,
-  `ciu_documento` int(11) NOT NULL,
-  `fi_codigo` int(11) NOT NULL,
   `so_fecha_inicio` date NOT NULL,
   `so_fecha_cierre` date NOT NULL,
   `so_imagen` varchar(500) NOT NULL,
@@ -372,8 +370,7 @@ ALTER TABLE `tblsexo`
 --
 ALTER TABLE `tblsondeo`
   ADD PRIMARY KEY (`so_codigo`),
-  ADD KEY `fk_adm_codigo_tbladministrador` (`adm_codigo`),
-  ADD KEY `fk_fi_codigo_tblfiltros` (`fi_codigo`);
+  ADD KEY `fk_adm_codigo_tbladministrador` (`adm_codigo`);
 
 --
 -- Indices de la tabla `tblsondeo_pregunta`
@@ -540,8 +537,7 @@ ALTER TABLE `tblpreguntas`
 -- Filtros para la tabla `tblsondeo`
 --
 ALTER TABLE `tblsondeo`
-  ADD CONSTRAINT `fk_adm_codigo_tbladministrador` FOREIGN KEY (`adm_codigo`) REFERENCES `tbladministrador` (`adm_codigo`),
-  ADD CONSTRAINT `fk_fi_codigo_tblfiltros` FOREIGN KEY (`fi_codigo`) REFERENCES `tblfiltros` (`fi_codigo`);
+  ADD CONSTRAINT `fk_adm_codigo_tbladministrador` FOREIGN KEY (`adm_codigo`) REFERENCES `tbladministrador` (`adm_codigo`);
 
 --
 -- Filtros para la tabla `tblsondeo_pregunta`

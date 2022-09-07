@@ -18,6 +18,7 @@
         <hr style="border: 1px solid #fff;">
         <br>
         <p>No tienes una cuenta? <a href="<?=url('ciudadano','registro')?>">Registrate!</a></p>
+        <p><a href="<?=url('ciudadano','logout'); ?>">Cerrar sesion</a></p>
     </div>
 </div>
 <div class="container">

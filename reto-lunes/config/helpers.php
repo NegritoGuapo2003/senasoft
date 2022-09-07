@@ -23,3 +23,11 @@
 
     }
 
+    function validarSesion($sesion){
+
+        if(!isset($sesion)){
+                header("Location:index.php");
+        }
+
+    }
+

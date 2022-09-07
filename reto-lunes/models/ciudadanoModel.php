@@ -41,7 +41,7 @@
 
         //GET Y SET PARA EL DOCUMENTO
         public function getDocumento(){
-            $this->documento;
+            return $this->documento;
         }
 
         public function setDocumento($documento){
@@ -95,7 +95,7 @@
 
         //GET Y SET PARA EL EMAIL
         public function getEmail(){
-            $this->email;
+            return $this->email;
         }
 
         public function setEmail($email){
@@ -203,7 +203,7 @@
 
         //GET Y SET PARA LA EL CODIGO DE VALIDACION
         public function getCodigoValidacion(){
-            return $encrypt = password_hash($this->codigo_validacion, PASSWORD_BCRYPT, ['cost' => 4]);
+            return password_hash($this->codigo_validacion, PASSWORD_BCRYPT, ['cost' => 4]);
 
         }
 
@@ -238,8 +238,19 @@
 
         public function login(){
 
-            // $sql = "SELECT * FROM ciudadanos WHERE ciu_email = {$this->getEmail()} AND  ciu_codigo_validacion = {$this->getCodigoValidacion}";
-            
+            $sql = "SELECT * FROM tblciudadano WHERE ciu_documento = {$this->getDocumento()}";
+            $login = $this->db->query($sql);
+
+            if($login){
+                $log = $login->fetch_object();
+            }
+            $validado = false;
+            $verif = password_verify($this->codigo_validacion,$log->ciu_codigo_validacion);
+            if($verif){
+                $validado = $log;
+            }
+
+            return $validado;
 
         }
 

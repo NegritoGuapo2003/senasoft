@@ -46,7 +46,17 @@
                 if(count($errores) == 0){
 
                     $ciudadano = new CiudadanoModel();
-                    
+                    $ciudadano->setDocumento($documento);
+                    $ciudadano->setCodigoValidacion($codigo);
+                    $ciudadano_reg = $ciudadano->login();
+
+                    if($ciudadano_reg){
+                        $_SESSION['ciudadano'] = $ciudadano_reg;
+                        header("Location:".url('ciudadano','index'));
+                    }else{
+                        $_SESSION['error'] = "Error al logearse";
+                        header("Location:index.php");
+                    }
                     
                 }
 
@@ -54,12 +64,18 @@
 
         }
 
+        public function logout(){
+
+            if(isset($_SESSION['ciudadano'])){
+                unset($_SESSION['ciudadano']);
+                header("Location: index.php");
+            }
+
+        }
+
         public function index(){
 
-            $ciudadano = new CiudadanoModel();
-            $ciudadanos = $ciudadano->getCiudadanos();
-
-            require_once 'views/ciudadano.php';
+            echo "Hola";
 
         }
 

@@ -1,11 +1,12 @@
 <?php
-
+    
     class CiudadanoModel{
 
         private $tipo_documento;
         private $documento;
         private $nombre;
         private $apellidos;
+        private $sexo;
         private $telefono_fijo;
         private $celular;
         private $email;
@@ -17,7 +18,6 @@
         private $codigo_condicion;
         private $codigo_nivel_educativo;
         private $acceso_dispositivos;
-        private $codigo_tipos_acceso;
         private $acceso_internet;
         private $codigo_regimen;
         private $codigo_validacion;
@@ -64,6 +64,15 @@
 
         public function setApellidos($apellidos){
             $this->apellidos = $this->db->real_escape_string($apellidos);
+        }
+
+        //GET Y SET PARA EL SEXO
+        public function getSexo(){
+            $this->sexo;
+        }
+
+        public function setSexo($sexo){
+            $this->sexo = $this->db->real_escape_string($sexo);
         }
 
         //GET Y SET PARA EL TELEFONO FIJO
@@ -174,15 +183,6 @@
             $this->acceso_dispositivos = $this->db->real_escape_string($acceso_dispositivos);
         }
 
-        //GET Y SET PARA LA DIRECCION
-        public function getCodigoTiposAcceso(){
-            $this->codigo_tipos_acceso;
-        }
-
-        public function setCodigoTiposAcceso($codigo_tipos_acceso){
-            $this->codigo_tipos_acceso = $this->db->real_escape_string($codigo_tipos_acceso);
-        }
-
         //GET Y SET PARA LA ACCESO INTERNET
         public function getAccesoInternet(){
             $this->acceso_internet;
@@ -223,10 +223,10 @@
 
         public function guardarCiudadano(){
 
-            $sql = "INSERT INTO tblciudadano VALUES('{$this->tipo_documento}','{$this->documento}','{$this->nombre}','{$this->apellidos}','{$this->telefono_fijo}','{$this->celular}','{$this->email}',{$this->codigo_municipio},'{$this->direccion}',{$this->codigo_barrio_vereda},'{$this->fecha_nacimiento}',{$this->codigo_etnia},{$this->codigo_condicion},{$this->estrato},{$this->codigo_nivel_educativo},'{$this->acceso_dispositivos}',{$this->codigo_tipos_acceso},'{$this->acceso_internet}',{$this->codigo_regimen},'{$this->getCodigoValidacion()}')";
-            var_dump($sql);
-            var_dump($this->db->error);
+            $sql = "INSERT INTO tblciudadano VALUES('{$this->tipo_documento}','{$this->documento}','{$this->nombre}','{$this->apellidos}',{$this->sexo},'{$this->telefono_fijo}','{$this->celular}','{$this->email}',{$this->codigo_municipio},'{$this->direccion}',{$this->codigo_barrio_vereda},'{$this->fecha_nacimiento}',{$this->codigo_etnia},{$this->codigo_condicion},{$this->estrato},{$this->codigo_nivel_educativo},'{$this->acceso_dispositivos}','{$this->acceso_internet}',{$this->codigo_regimen},'{$this->getCodigoValidacion()}')";
+            echo $sql;
             $guardar = $this->db->query($sql);
+            var_dump($this->db->error);
             
             $validado = false;
             

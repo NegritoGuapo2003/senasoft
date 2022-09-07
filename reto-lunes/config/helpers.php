@@ -6,3 +6,12 @@
             return $url;
 
     }
+
+    function error404(){
+
+            $error = "La pagina que buscas no existe";
+
+            return $error;
+
+    }
+

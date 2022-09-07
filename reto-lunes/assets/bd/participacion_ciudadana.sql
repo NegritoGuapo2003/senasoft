@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2022 a las 00:25:59
+-- Tiempo de generación: 07-09-2022 a las 17:59:47
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -52,7 +52,9 @@ CREATE TABLE `tblbarrio_vereda` (
 
 CREATE TABLE `tblcertificados` (
   `ce_codigo` int(11) NOT NULL,
-  `ce_nombre` varchar(50) NOT NULL
+  `ce_nombre` varchar(50) NOT NULL,
+  `ciu_documento` varchar(11) NOT NULL,
+  `cer_fecha_creacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -66,6 +68,7 @@ CREATE TABLE `tblciudadano` (
   `ciu_documento` varchar(11) NOT NULL,
   `ciu_nombre` varchar(50) NOT NULL,
   `ciu_apellidos` varchar(50) NOT NULL,
+  `se_codigo` int(11) DEFAULT NULL,
   `ciu_telefono_fijo` varchar(20) DEFAULT NULL,
   `ciu_celular` varchar(20) DEFAULT NULL,
   `ciu_email` varchar(50) NOT NULL,
@@ -78,10 +81,9 @@ CREATE TABLE `tblciudadano` (
   `ciu_estrato` int(1) NOT NULL,
   `ne_codigo` int(11) NOT NULL,
   `ciu_acceso_dispositivos` varchar(2) NOT NULL,
-  `ta_codigo` int(11) NOT NULL,
   `ciu_acceso_internet` varchar(2) DEFAULT NULL,
-  `reg_codigo` varchar(11) DEFAULT NULL,
-  `ciu_codigo_validacion` varchar(10) NOT NULL
+  `reg_codigo` int(11) DEFAULT NULL,
+  `ciu_codigo_validacion` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -92,8 +94,19 @@ CREATE TABLE `tblciudadano` (
 
 CREATE TABLE `tblciudadano_pregunta` (
   `pr_codigo` int(11) NOT NULL,
-  `ciu_cedula` int(11) NOT NULL,
+  `ciu_cedula` varchar(11) NOT NULL,
   `cp_respuesta` varchar(800) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblciudadano_tipos_acceso`
+--
+
+CREATE TABLE `tblciudadano_tipos_acceso` (
+  `ciu_documento` varchar(30) NOT NULL,
+  `ta_codigo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -159,7 +172,7 @@ CREATE TABLE `tblnivel_educativo` (
 
 CREATE TABLE `tblnotificacion` (
   `not_codigo` int(11) NOT NULL,
-  `ciu_documento` int(11) NOT NULL,
+  `ciu_documento` varchar(11) NOT NULL,
   `not_descripcion` varchar(800) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -268,19 +281,35 @@ ALTER TABLE `tblbarrio_vereda`
 -- Indices de la tabla `tblcertificados`
 --
 ALTER TABLE `tblcertificados`
-  ADD PRIMARY KEY (`ce_codigo`);
+  ADD PRIMARY KEY (`ce_codigo`),
+  ADD KEY `fk_ciudadano_tblciudadano` (`ciu_documento`);
 
 --
 -- Indices de la tabla `tblciudadano`
 --
 ALTER TABLE `tblciudadano`
-  ADD PRIMARY KEY (`ciu_documento`);
+  ADD PRIMARY KEY (`ciu_documento`),
+  ADD KEY `fk_mun_codigo_tblmunicipio` (`mun_codigo`),
+  ADD KEY `fk_etcodigo_tbletnia` (`et_codigo`),
+  ADD KEY `fk_barriover_tblbarrio_vereda` (`bv_codigo`),
+  ADD KEY `fk_con_codigo_tblcondicion` (`con_codigo`),
+  ADD KEY `fk_reg_codigo_tblregimen` (`reg_codigo`),
+  ADD KEY `fk_ne_codigo_tblnivel_educativo` (`ne_codigo`),
+  ADD KEY `fk_se_codigo_tblsexo` (`se_codigo`);
 
 --
 -- Indices de la tabla `tblciudadano_pregunta`
 --
 ALTER TABLE `tblciudadano_pregunta`
-  ADD PRIMARY KEY (`pr_codigo`,`ciu_cedula`);
+  ADD PRIMARY KEY (`pr_codigo`,`ciu_cedula`),
+  ADD KEY `fk_ciucedula_tblciudadano` (`ciu_cedula`);
+
+--
+-- Indices de la tabla `tblciudadano_tipos_acceso`
+--
+ALTER TABLE `tblciudadano_tipos_acceso`
+  ADD PRIMARY KEY (`ciu_documento`,`ta_codigo`),
+  ADD KEY `fk_tacodigo_tbltipo_acceso` (`ta_codigo`);
 
 --
 -- Indices de la tabla `tblcondicion`
@@ -316,13 +345,15 @@ ALTER TABLE `tblnivel_educativo`
 -- Indices de la tabla `tblnotificacion`
 --
 ALTER TABLE `tblnotificacion`
-  ADD PRIMARY KEY (`not_codigo`);
+  ADD PRIMARY KEY (`not_codigo`),
+  ADD KEY `fk_ciu_documento_tblciudadano` (`ciu_documento`);
 
 --
 -- Indices de la tabla `tblpreguntas`
 --
 ALTER TABLE `tblpreguntas`
-  ADD PRIMARY KEY (`pr_codigo`);
+  ADD PRIMARY KEY (`pr_codigo`),
+  ADD KEY `fk_te_codigo_tbltema` (`te_codigo`);
 
 --
 -- Indices de la tabla `tblregimen`
@@ -340,13 +371,16 @@ ALTER TABLE `tblsexo`
 -- Indices de la tabla `tblsondeo`
 --
 ALTER TABLE `tblsondeo`
-  ADD PRIMARY KEY (`so_codigo`);
+  ADD PRIMARY KEY (`so_codigo`),
+  ADD KEY `fk_adm_codigo_tbladministrador` (`adm_codigo`),
+  ADD KEY `fk_fi_codigo_tblfiltros` (`fi_codigo`);
 
 --
 -- Indices de la tabla `tblsondeo_pregunta`
 --
 ALTER TABLE `tblsondeo_pregunta`
-  ADD PRIMARY KEY (`pr_codigo`,`so_codigo`);
+  ADD PRIMARY KEY (`pr_codigo`,`so_codigo`),
+  ADD KEY `fk_so_codidgo_tblsondeo` (`so_codigo`);
 
 --
 -- Indices de la tabla `tbltema`
@@ -453,6 +487,68 @@ ALTER TABLE `tbltema`
 --
 ALTER TABLE `tbltipos_acceso`
   MODIFY `ta_codigo` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `tblcertificados`
+--
+ALTER TABLE `tblcertificados`
+  ADD CONSTRAINT `fk_ciudadano_tblciudadano` FOREIGN KEY (`ciu_documento`) REFERENCES `tblciudadano` (`ciu_documento`);
+
+--
+-- Filtros para la tabla `tblciudadano`
+--
+ALTER TABLE `tblciudadano`
+  ADD CONSTRAINT `fk_barriover_tblbarrio_vereda` FOREIGN KEY (`bv_codigo`) REFERENCES `tblbarrio_vereda` (`bv_codigo`),
+  ADD CONSTRAINT `fk_con_codigo_tblcondicion` FOREIGN KEY (`con_codigo`) REFERENCES `tblcondicion` (`con_codigo`),
+  ADD CONSTRAINT `fk_etcodigo_tbletnia` FOREIGN KEY (`et_codigo`) REFERENCES `tbletnia` (`et_codigo`),
+  ADD CONSTRAINT `fk_mun_codigo_tblmunicipio` FOREIGN KEY (`mun_codigo`) REFERENCES `tblmunicipio` (`mun_codigo`),
+  ADD CONSTRAINT `fk_ne_codigo_tblnivel_educativo` FOREIGN KEY (`ne_codigo`) REFERENCES `tblnivel_educativo` (`ne_codigo`),
+  ADD CONSTRAINT `fk_reg_codigo_tblregimen` FOREIGN KEY (`reg_codigo`) REFERENCES `tblregimen` (`re_codigo`),
+  ADD CONSTRAINT `fk_se_codigo_tblsexo` FOREIGN KEY (`se_codigo`) REFERENCES `tblsexo` (`se_codigo`);
+
+--
+-- Filtros para la tabla `tblciudadano_pregunta`
+--
+ALTER TABLE `tblciudadano_pregunta`
+  ADD CONSTRAINT `fk_ciucedula_tblciudadano` FOREIGN KEY (`ciu_cedula`) REFERENCES `tblciudadano` (`ciu_documento`),
+  ADD CONSTRAINT `fk_prcodigo_tblpreguntas` FOREIGN KEY (`pr_codigo`) REFERENCES `tblpreguntas` (`pr_codigo`);
+
+--
+-- Filtros para la tabla `tblciudadano_tipos_acceso`
+--
+ALTER TABLE `tblciudadano_tipos_acceso`
+  ADD CONSTRAINT `fk_ciu_codigo_tblciudadano` FOREIGN KEY (`ciu_documento`) REFERENCES `tblciudadano` (`ciu_documento`),
+  ADD CONSTRAINT `fk_tacodigo_tbltipo_acceso` FOREIGN KEY (`ta_codigo`) REFERENCES `tbltipos_acceso` (`ta_codigo`);
+
+--
+-- Filtros para la tabla `tblnotificacion`
+--
+ALTER TABLE `tblnotificacion`
+  ADD CONSTRAINT `fk_ciu_documento_tblciudadano` FOREIGN KEY (`ciu_documento`) REFERENCES `tblciudadano` (`ciu_documento`);
+
+--
+-- Filtros para la tabla `tblpreguntas`
+--
+ALTER TABLE `tblpreguntas`
+  ADD CONSTRAINT `fk_te_codigo_tbltema` FOREIGN KEY (`te_codigo`) REFERENCES `tbltema` (`te_codigo`);
+
+--
+-- Filtros para la tabla `tblsondeo`
+--
+ALTER TABLE `tblsondeo`
+  ADD CONSTRAINT `fk_adm_codigo_tbladministrador` FOREIGN KEY (`adm_codigo`) REFERENCES `tbladministrador` (`adm_codigo`),
+  ADD CONSTRAINT `fk_fi_codigo_tblfiltros` FOREIGN KEY (`fi_codigo`) REFERENCES `tblfiltros` (`fi_codigo`);
+
+--
+-- Filtros para la tabla `tblsondeo_pregunta`
+--
+ALTER TABLE `tblsondeo_pregunta`
+  ADD CONSTRAINT `fk_pr_codigo_tblpreguntas` FOREIGN KEY (`pr_codigo`) REFERENCES `tblpreguntas` (`pr_codigo`),
+  ADD CONSTRAINT `fk_so_codidgo_tblsondeo` FOREIGN KEY (`so_codigo`) REFERENCES `tblsondeo` (`so_codigo`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

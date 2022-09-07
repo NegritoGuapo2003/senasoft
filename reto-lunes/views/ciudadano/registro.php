@@ -101,8 +101,6 @@
         <option value="2">Contributivo</option>
     </select>
 
-    
     <input type="submit" value="Enviar">
-
 
 </form>

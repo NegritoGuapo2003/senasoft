@@ -1,6 +1,7 @@
 <?php
 
     require_once "models/ciudadanoModel.php";
+    require_once "models/sexoModel.php";
 
     class ciudadanoController {
 
@@ -58,6 +59,9 @@
 
         public function registro(){
 
+            $sexo = new SexoModel();
+            $sex = $sexo->getAll();
+
             require_once 'views/ciudadano/registro.php';
 
         }
@@ -72,6 +76,7 @@
                 $cedula = isset($_POST['cedula']) ? (int)$_POST['cedula'] : "" ;
                 $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : "" ;
                 $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : "" ;
+                $sexo = isset($_POST['sexo']) ? (int)$_POST['sexo'] : "" ;
                 $telefono_fijo = isset($_POST['telefono_fijo']) ? (int)$_POST['telefono_fijo'] : "" ;
                 $celular = isset($_POST['celular']) ? (int)$_POST['celular'] : "" ;
                 $email = isset($_POST['email']) ? $_POST['email'] : "" ;
@@ -84,7 +89,6 @@
                 $estrato = isset($_POST['estrato']) ? (int)$_POST['estrato'] : "" ;
                 $nivel_educacion = isset($_POST['nivel_educacion']) ? (int)$_POST['nivel_educacion'] : "" ;
                 $acceso_dispositivos = isset($_POST['acceso_dispositivos']) ? (int)$_POST['acceso_dispositivos'] : "" ;
-                $dispositivos = isset($_POST['dispositivos']) ? (int)$_POST['dispositivos'] : "" ;
                 $internet = isset($_POST['internet']) ? (int)$_POST['internet'] : "" ;
                 $regimen = isset($_POST['regimen']) ? (int)$_POST['regimen'] : "" ;
 
@@ -120,6 +124,14 @@
                 }else{
                     $apellidos_validado = false;
                     $errores['apellidos'] = "Apellidos no validos";
+                }
+
+                //Validacion para el sexo
+                if(!empty($sexo)){
+                    $sexo_validado = true;
+                }else{
+                    $sexo_validado = false;
+                    $errores['sexo'] = "Sexo no valido";
                 }
 
                 //Validacion para el telefono fijo
@@ -218,14 +230,6 @@
                     $errores['acceso_dispositivos'] = "Tipo de documento no valido";
                 }
 
-                //Validacion para los dispositivos
-                if(!empty($dispositivos)){
-                    $dispositivos_validado = true;
-                }else{
-                    $dispositivos_validado = false;
-                    $errores['dispositivos'] = "Dispositivos no validos";
-                }
-
                 //Validacion para el internet
                 if(!empty($internet)){
                     $internet_validado = true;
@@ -243,8 +247,6 @@
                 }
 
                 if(count($errores) == 0){
-                    
-                    var_dump($_POST);
 
                     $codigo_validacion = rand(10000,99999);
 
@@ -253,6 +255,7 @@
                     $ciudadano->setDocumento($cedula);
                     $ciudadano->setNombre($nombre);
                     $ciudadano->setApellidos($apellidos);
+                    $ciudadano->setSexo($sexo);
                     $ciudadano->setTelefonoFijo($telefono_fijo);
                     $ciudadano->setCelular($celular);
                     $ciudadano->setemail($email);
@@ -265,13 +268,11 @@
                     $ciudadano->setEstrato($estrato);
                     $ciudadano->setNivelEducativo($nivel_educacion);
                     $ciudadano->setAccesoDispositivos($acceso_dispositivos);
-                    $ciudadano->setCodigoTiposAcceso($dispositivos);
                     $ciudadano->setAccesoInternet($internet);
                     $ciudadano->setCodigoRegimen($regimen);
                     $ciudadano->setCodigoValidacion($codigo_validacion);
                     $ciudadano->guardarCiudadano();
-
-                    var_dump($ciudadano);
+                    
 
                 }else{
                     var_dump($errores);

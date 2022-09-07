@@ -16,6 +16,14 @@
     <label for="apellidos">Apellidos: </label> 
     <input type="text" name="apellidos">
 
+    <label for="">Sexo: </label>
+    <select name="sexo" id="">
+        <?php while($sexo = $sex->fetch_object()): ?>
+            <?php var_dump($sexo) ?>
+            <option value="<?=$sexo->se_codigo ?>"><?=$sexo->se_nombre ?></option>
+        <?php endwhile; ?>
+    </select>
+
     <label for="telefono_fijo">Telefono Fijo: </label> 
     <input type="number" name="telefono_fijo">
 
@@ -78,14 +86,6 @@
     <select name="acceso_dispositivos" id="">
         <option value="1">Si</option>
         <option value="2">No</option>
-    </select>
-
-    <!-- asignamos atributo multiple a la etiqueta select por que es posible seleccionar varias opciones -->
-    <label for="acceso_dispostivos">Si la respuesta fue si ¿A cual tienes acceso?</label> 
-    <select name="dispositivos" id="">
-        <option value="1">Movil</option>
-        <option value="2">Celular</option>
-        <option value="3">Otro</option>
     </select>
 
     <label for="internet">¿Cuenta con acceso a internet?:</label> 

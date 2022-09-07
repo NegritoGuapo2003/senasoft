@@ -10,6 +10,12 @@
 
     if(!isset($_GET['controlador']) || !isset($_GET['accion'])){
         echo "<h1>Index principal</h1>";
+        if(isset($_GET['codigo'])){  
+            echo "<br>";
+            echo "<hr>";
+            echo "<br>";
+            echo "<p>Este es tu codigo para entrar futuramente a tu cuenta: {$_GET['codigo']}</p>";
+        }
     }else{
         if(isset($_GET['controlador']) && class_exists($_GET['controlador']."Controller")){
             $nombre_controlador = $_GET['controlador']."Controller";
@@ -25,6 +31,7 @@
             echo error404();
         }
     }
+
 
     // if(isset($_GET['controlador'])){
     //     $nombre_controlador = $_GET['controlador']."Controller";

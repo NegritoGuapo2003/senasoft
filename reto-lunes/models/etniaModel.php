@@ -1,6 +1,6 @@
 <?php
 
-    class SexoModel{
+    class EtniaModel{
 
         private $codigo;
         private $nombre;
@@ -32,13 +32,13 @@
         //Funciones para la base de datos
         public function getAll(){
 
-            $sql = "SELECT * FROM tblsexo ORDER BY se_nombre ASC";
-            $sexo = $this->db->query($sql);
+            $sql = "SELECT * FROM tbletnia  ORDER BY et_nombre ASC";
+            $etnia = $this->db->query($sql);
 
             $validado = false;
 
-            if($sexo){
-                $validado = $sexo;
+            if($etnia){
+                $validado = $etnia;
             }
 
             return $validado;

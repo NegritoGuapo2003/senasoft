@@ -19,7 +19,6 @@
     <label for="">Sexo: </label>
     <select name="sexo" id="">
         <?php while($sexo = $sex->fetch_object()): ?>
-            <?php var_dump($sexo) ?>
             <option value="<?=$sexo->se_codigo ?>"><?=$sexo->se_nombre ?></option>
         <?php endwhile; ?>
     </select>
@@ -35,16 +34,16 @@
 
     <label for="municipio">Municipio: </label> 
     <select name="municipio"    id="">
-        <option value="1">Municipio 1</option>
-        <option value="2">Municipio 2</option>
-        <option value="3">Municipio 3</option>
+    <?php while($municipio = $mun->fetch_object()): ?>
+            <option value="<?=$municipio->mun_codigo ?>"><?=$municipio->mun_nombre ?></option>
+        <?php endwhile; ?>
     </select>
 
     <label for="barrio_vereda">Vereda: </label> 
     <select name="barrio_vereda" id="">
-        <option value="1">Vereda 1</option>
-        <option value="2">Vereda 2</option>
-        <option value="3">Vereda 3</option>
+        <?php while($vereda = $bar->fetch_object()): ?>
+            <option value="<?=$vereda->bv_codigo ?>"><?=$vereda->bv_nombre ?></option>
+        <?php endwhile; ?>
     </select>
 
     <label for="direccion">Direccion: </label> 
@@ -55,16 +54,16 @@
 
     <label for="etnia">Etnia a la que pertenece: </label> 
     <select name="etnia" id="">
-        <option value="1">Etnia 1</option>
-        <option value="2">Etnia 2</option>
-        <option value="3">Etnia 3</option>
+        <?php while($etnia = $etn->fetch_object()): ?>
+            <option value="<?=$etnia->et_codigo ?>"><?=$etnia->et_nombre ?></option>
+        <?php endwhile; ?>
     </select>
 
     <label for="discapacidad">Condicion de discapacidad: </label> 
     <select name="discapacidad" id="">
-        <option value="1">Discapacidad 1</option>
-        <option value="2">Discapacidad 2</option>
-        <option value="3">Discapacidad 3</option>
+        <?php while($condicion = $con->fetch_object()): ?>
+            <option value="<?=$condicion->con_codigo ?>"><?=$condicion->con_nombre ?></option>
+        <?php endwhile; ?>
     </select>
 
     <label for="Estrato">Estrato: </label> 
@@ -76,10 +75,9 @@
 
     <label for="nivel_educacion">Nivel Educativo:</label> 
     <select name="nivel_educacion" id="">
-        <option value="1">Bachiller</option>
-        <option value="2">Tecnico</option>
-        <option value="3">Tecnologo</option>
-        <option value="3">Profesional</option>
+        <?php while($nivelE = $niv->fetch_object()): ?>
+            <option value="<?=$nivelE->ne_codigo ?>"><?=$nivelE->ne_nombre ?></option>
+        <?php endwhile; ?>
     </select>
 
     <label for="acceso_dispostivos">Tiene acceso a dispositivos tecnologicos?:</label> 
@@ -96,8 +94,9 @@
 
     <label for="regimen">Regimen de afiliacion</label> 
     <select name="regimen" id="">
-        <option value="1">Subsidiado</option>
-        <option value="2">Contributivo</option>
+        <?php while($regimen = $reg->fetch_object()): ?>
+            <option value="<?=$regimen->re_codigo ?>"><?=$regimen->re_nombre ?></option>
+        <?php endwhile; ?>
     </select>
 
     

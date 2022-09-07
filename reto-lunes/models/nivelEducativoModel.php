@@ -30,12 +30,18 @@
             $this->codigo = $this->db->real_escape_string($nombre);
         }
 
-        public function getNivelesEducativos(){
+        public function getAll(){
 
-            $sql = "SELECT * FROM tblnivel_educativo";
-            $niveles = $this->db->query("$sql");
+            $sql = "SELECT * FROM tblnivel_educativo ORDER BY ne_nombre ASC";
+            $nivel = $this->db->query($sql);
 
-            return $niveles;
+            $validado = false;
+
+            if($nivel){
+                $validado = $nivel;
+            }
+
+            return $validado;
 
         }
 

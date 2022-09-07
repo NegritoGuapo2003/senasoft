@@ -30,9 +30,9 @@
             $this->codigo = $this->db->real_escape_string($nombre);
         }
 
-        public function getBarrios(){
+        public function getAll(){
 
-            $sql = "SELECT * FROM tblbarrio_vereda";
+            $sql = "SELECT * FROM tblbarrio_vereda ORDER BY bv_nombre ASC";
             $barrios = $this->db->query("$sql");
 
             return $barrios;

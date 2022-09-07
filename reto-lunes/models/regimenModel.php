@@ -30,12 +30,18 @@
             $this->codigo = $this->db->real_escape_string($nombre);
         }
 
-        public function getRegimens(){
+        public function getAll(){
 
-            $sql = "SELECT * FROM tblregimen";
-            $regimens = $this->db->query("$sql");
+            $sql = "SELECT * FROM tblregimen ORDER BY re_nombre ASC";
+            $regimen = $this->db->query($sql);
 
-            return $regimens;
+            $validado = false;
+
+            if($regimen){
+                $validado = $regimen;
+            }
+
+            return $validado;
 
         }
 

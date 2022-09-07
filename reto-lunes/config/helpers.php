@@ -15,3 +15,11 @@
 
     }
 
+    function limpiarUrl($url){
+        
+        if(isset($_GET[$url])){
+                header("Location:index.php");
+        }
+
+    }
+

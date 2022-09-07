@@ -2,6 +2,12 @@
 
     require_once "models/ciudadanoModel.php";
     require_once "models/sexoModel.php";
+    require_once "models/municipioModel.php";
+    require_once "models/barrioVeredaModel.php";
+    require_once "models/etniaModel.php";
+    require_once "models/condicionModel.php";
+    require_once "models/nivelEducativoModel.php";
+    require_once "models/regimenModel.php";
 
     class ciudadanoController {
 
@@ -61,6 +67,24 @@
 
             $sexo = new SexoModel();
             $sex = $sexo->getAll();
+
+            $municipio = new MunicipioModel();
+            $mun = $municipio->getAll();
+
+            $barrio_vereda = new BarrioVeredaModel();
+            $bar = $barrio_vereda->getAll();
+
+            $etnia = new EtniaModel();
+            $etn = $etnia->getAll();
+
+            $condicion = new CondicionModel();
+            $con = $condicion->getAll();
+
+            $nivel_educativo = new NivelEducativoModel();
+            $niv = $nivel_educativo->getAll();
+
+            $municipio = new RegimenModel();
+            $reg = $municipio->getAll();
 
             require_once 'views/ciudadano/registro.php';
 
@@ -273,11 +297,22 @@
                     $ciudadano->setCodigoValidacion($codigo_validacion);
                     $ciudadano->guardarCiudadano();
                     
+                    if($ciudadano){
+                        $_SESSION['complete'] = "ok";
+                        header("Location:index.php?codigo=".$codigo_validacion);
+                    }else{
+                        $_SESSION['error'] = "error";
+                        header("Location:index.php?controlador=ciudadano&accion=registro");
+                    }
 
                 }else{
-                    var_dump($errores);
+                    $_SESSION['error'] = "error";
+                    header("Location:index.php?controlador=ciudadano&accion=registro");
                 }
 
+            }else{
+                $_SESSION['error'] = "error";
+                header("Location:index.php?controlador=ciudadano&accion=registro");
             }
 
         }

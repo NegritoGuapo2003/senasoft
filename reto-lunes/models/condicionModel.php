@@ -30,12 +30,18 @@
             $this->codigo = $this->db->real_escape_string($nombre);
         }
 
-        public function getCondiciones(){
+        public function getAll(){
 
-            $sql = "SELECT * FROM tblcondicion";
-            $condiciones = $this->db->query("$sql");
+            $sql = "SELECT * FROM tblcondicion  ORDER BY con_nombre ASC";
+            $condicion = $this->db->query($sql);
 
-            return $condiciones;
+            $validado = false;
+
+            if($condicion){
+                $validado = $condicion;
+            }
+
+            return $validado;
 
         }
 

@@ -151,6 +151,21 @@
 
         }
 
+        public function getSondeos(){
+
+            $sql = "SELECT * FROM tblsondeo ORDER BY so_codigo DESC LIMIT 5";
+            $sondeo = $this->db->query($sql);
+
+            $validado = false;
+
+            if($sondeo){
+                $validado = $sondeo;
+            }
+
+            return $validado;
+
+        }
+
         public function guardarSondeo(){
 
             $sql = "INSERT INTO tblsondeo VALUES({$this->getCodigo()},'{$this->getNombre()}','{$this->getFechaInicio()}','{$this->getFechaCierre()}',{$this->getCodigoTema()},{$this->getEdad()},{$this->getCodigoSexo()},{$this->getCodigoEtnia()},{$this->getEstrato()},{$this->getCodigoNivelAcademico()},'{$this->getUrlImagen()}',{$this->getCodigoAdministrador()})";;

@@ -17,14 +17,9 @@
 
     <h3>Preguntas del sondeo</h3>
 
-    <div class="contenedor-preguntas">
+    <div class="contenedor-preguntas" id="contenedor">
 
-        <div class="pregunta" hidden>
 
-            <label for="">escribe la pregunta</label>
-            <input type="text">
-
-        </div>
 
     </div>
 

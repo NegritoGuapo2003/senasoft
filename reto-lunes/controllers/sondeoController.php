@@ -24,27 +24,31 @@
                 $nivel_academico = isset($_POST['nivel_academico']) ? (int)$_POST['nivel_academico'] : "" ;
                 $admin = isset($_POST['admin']) ? (int)$_POST['admin'] : "" ;
                 //Recibir datos del archivo
-                $nombre_archivo = $_FILES['imagen']['name'];
-                $tipo_archivo = $_FILES['imagen']['type'];
-                $tamaño_archivo = $_FILES['imagen']['size'];
-                $directorio = 'uploads/images/';
-                $subir_archivo = $directorio.basename($_FILES['imagen']['name']);
-                
-                if($tipo_archivo == "image/jpeg" || $tipo_archivo == "image/jpg"
-                || $tipo_archivo == "image/png" || $tipo_archivo == "image/gif"){
+                if(!empty($_FILES['imagen']['name'])){
+                    $nombre_archivo = $_FILES['imagen']['name'];
+                    $tipo_archivo = $_FILES['imagen']['type'];
+                    $tamaño_archivo = $_FILES['imagen']['size'];
+                    $directorio = 'uploads/images/';
+                    $subir_archivo = $directorio.basename($_FILES['imagen']['name']);
                     
-                        if(move_uploaded_file($_FILES['imagen']['tmp_name'], $subir_archivo)){
-                            echo "Subido con exito";
-                        }else{
-                            echo "Fallo";
-                        }
+                    if($tipo_archivo == "image/jpeg" || $tipo_archivo == "image/jpg"
+                    || $tipo_archivo == "image/png" || $tipo_archivo == "image/gif"){
+                        
+                            if(move_uploaded_file($_FILES['imagen']['tmp_name'], $subir_archivo)){
+                                echo "Subido con exito";
+                            }else{
+                                echo "Fallo";
+                            }
 
+                    }
+                }else{
+                    $nombre_archivo = "defecto.jpg";
                 }
 
                 if(!empty($codigo) && !empty($nombre) && !empty($fecha_inicio) 
                 && !empty($fecha_cierre) &&!empty($tema) && !empty($edad) && !empty($sexo)
                 && !empty($etnia) && !empty($estrato) && !empty($nivel_academico) 
-                && !empty($admin) && !empty($nombre_archivo) ){
+                && !empty($admin) ){
 
                     $sondeo = new SondeoModel();
                     $sondeo->setCodigo($codigo);
@@ -89,7 +93,7 @@
         public function mostrarSondeo(){
 
             $sondeo = new SondeoModel();
-            $sondeos = $sondeo->getAll();
+            $sondeos = $sondeo->getSondeos();
 
             require_once 'views/sondeo/sondeosDisponibles.php';
 

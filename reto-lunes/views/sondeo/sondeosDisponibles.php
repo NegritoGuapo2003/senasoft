@@ -1,10 +1,26 @@
 
 <?php while($sondeo = $sondeos->fetch_object()): ?>
+    
+    <div class="sondeo">
+        <?php
 
-    <h1><?=$sondeo->so_nombre?></h1>
-    <img src="<?=$sondeo->so_nombre?>" alt="imagen/sondeo">
-    <h2>Tema: <?=$sondeo->te_codigo?></h2>
-    <p>Fecha de inicio: <?=$sondeo->so_fecha_inicio?></p>
-    <p>Fecha de cierre: <?=$sondeo->so_fecha_cierre?></p>
+            if($sondeo->so_imagen == "defecto.jpg"){
+                $url = "uploads/images/defecto.jpg";
+            }else{
+                $url = "uploads/images/".$sondeo->so_imagen;
+            }
+
+        ?>
+        <div class="details-sondeo">
+
+            <img src="<?=$url?>" alt="imagen/sondeo">
+            <h2><?=$sondeo->so_nombre?></h2>
+            <h2>Tema: <?=$sondeo->te_codigo?></h2>
+            <p>Fecha de inicio: <?=$sondeo->so_fecha_inicio?></p>
+            <p>Fecha de cierre: <?=$sondeo->so_fecha_cierre?></p>
+            
+        </div>
+
+    </div>
 
 <?php endwhile; ?>

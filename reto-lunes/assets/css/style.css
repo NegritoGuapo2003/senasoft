@@ -10,7 +10,7 @@ body {
 
 .aside{
     background: #256F74;
-    height: 200vh;
+    height: auto;
     width: 30%;
 
     display: flex;
@@ -98,3 +98,34 @@ body {
     margin: 20px auto;
     width: 50%;
 }
+
+.sondeo {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sondeo .details-sondeo {
+    background: #256F74;
+    width: 50%;
+    height: auto;
+    margin: 30px;
+    padding: 0px 0px 20px 0px;
+}
+
+.sondeo .details-sondeo img {
+    width: 100%;
+    height: 50%;
+}
+
+.sondeo .details-sondeo h2, p {
+   color: #fff;
+}
+
+.sondeo .details-sondeo h2 {
+    margin: 5px;
+ }
+

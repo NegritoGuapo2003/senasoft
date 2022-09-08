@@ -4,10 +4,9 @@
 
         private $codigo;
         private $nombre;
-        private $documento_ciudadano;
-        private $filtro_codigo;
         private $fecha_inicio;
         private $fecha_cierre;
+        private $codigo_tema;
         private $url_imagen;
         private $adm_codigo;
 
@@ -39,59 +38,49 @@
             $this->nombre = $this->db->real_escape_string($nombre);
         }
 
-        //GET Y SET PARA EL DOCUMENTO
-        public function getDocumento(){
-            return $this->documento_ciudadano;
-        }
-
-        public function setDocumento($doc){
-            $this->documento_ciudadano = $this->db->real_escape_string($doc);
-        }
-
-
-        //GET Y SET PARA EL CODIGO FILTRO
-        public function getFiltroCodigo(){
-            return $this->filtro_codigo;
-        }
-
-        public function setFiltroCodigo($codigo){
-            $this->filtro_codigo = $this->db->real_escape_string($codigo);
-        }
-
         //GET Y SET PARA EL FECHA INICIO
-        public function getFecha_Inicio(){
+        public function getFechaInicio(){
             return $this->fecha_inicio;
         }
 
-        public function setFecha_Inicio($fecha){
-            $this->fecha_inicio = $this->db->real_escape_string($fecha);
+        public function setFechaInicio($fecha_inicio){
+            $this->fecha_inicio = $this->db->real_escape_string($fecha_inicio);
         }
 
         //GET Y SET PARA EL FECHA CIERRE
-        public function getFecha_Cierra(){
+        public function getFechaCierre(){
             return $this->fecha_cierre;
         }
 
-        public function setFecha_Cierra($fecha){
-            $this->fecha_cierre = $this->db->real_escape_string($fecha);
+        public function setFechaCierre($fecha_cierre){
+            $this->fecha_cierre = $this->db->real_escape_string($fecha_cierre);
+        }
+
+        //GET Y SET PARA EL TEMA DEL SONDEO
+        public function getCodigoTema(){
+            return $this->codigo_tema;
+        }
+
+        public function setCodigoTema($codigo_tema){
+            $this->codigo_tema = $this->db->real_escape_string($codigo_tema);
         }
 
 
         //GET Y SET PARA EL URL IMAGEN
-        public function getUrl_Imagen(){
+        public function getUrlImagen(){
             return $this->url_imagen;
         }
 
-        public function setUrl_Imagen($url){
+        public function setUrlImagen($url){
             $this->url_imagen = $this->db->real_escape_string($url);
         }
 
         //GET Y SET PARA EL CODIGO ADMIN
-        public function getAdm_Codigo(){
+        public function getCodigoAdministrador(){
             return $this->adm_codigo;
         }
 
-        public function setAdm_Codigo($codigo){
+        public function setCodigoAdministrador($codigo){
             $this->adm_codigo = $this->db->real_escape_string($codigo);
         }
 
@@ -106,6 +95,21 @@
 
             if($sondeo){
                 $validado = $sondeo;
+            }
+
+            return $validado;
+
+        }
+
+        public function guardarSondeo(){
+
+            $sql = "INSERT INTO tblsondeo VALUES({$this->getCodigo()},{$this->getNombre()},{$this->getFechaInicio()},{$this->getFechaCierre()},{$this->getCodigoTema()},{$this->getUrlImagen()},{$this->getCodigoAdministrador()})";
+            $guardar = $this->db->query($sql);
+
+            $validado = false;
+
+            if($guardar){
+                $validado = $guardar;
             }
 
             return $validado;

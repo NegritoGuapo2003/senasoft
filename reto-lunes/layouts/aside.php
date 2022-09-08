@@ -19,6 +19,8 @@
         <br>
         <p>No tienes una cuenta? <a href="<?=url('ciudadano','registro')?>">Registrate!</a></p>
         <p><a href="<?=url('ciudadano','logout'); ?>">Cerrar sesion</a></p>
+        <p><a href="<?=url('sondeo','registroSondeo'); ?>">Registrar un sondeo</a></p>
+
     </div>
 </div>
 <div class="container">

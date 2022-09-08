@@ -2,6 +2,9 @@
 
     require_once "models/sondeoModel.php";
     require_once "models/temaModel.php";
+    require_once "models/sexoModel.php";
+    require_once "models/etniaModel.php";
+    require_once "models/nivelEducativoModel.php";
 
     class SondeoController {
 
@@ -14,30 +17,48 @@
                 $fecha_inicio = isset($_POST['fecha_inicio']) ? $_POST['fecha_inicio'] : "" ;
                 $fecha_cierre = isset($_POST['fecha_cierre']) ? $_POST['fecha_cierre'] : "" ;
                 $tema = isset($_POST['tema']) ? (int)$_POST['tema'] : "" ;
+                $edad = isset($_POST['edad']) ? (int)$_POST['edad'] : "" ;
+                $sexo = isset($_POST['sexo']) ? (int)$_POST['sexo'] : "" ;
+                $etnia = isset($_POST['etnia']) ? (int)$_POST['etnia'] : "" ;
+                $estrato = isset($_POST['estrato']) ? (int)$_POST['estrato'] : "" ;
+                $nivel_academico = isset($_POST['nivel_academico']) ? (int)$_POST['nivel_academico'] : "" ;
                 $admin = isset($_POST['admin']) ? (int)$_POST['admin'] : "" ;
                 //Recibir datos del archivo
                 $nombre_archivo = $_FILES['imagen']['name'];
                 $tipo_archivo = $_FILES['imagen']['type'];
                 $tamaño_archivo = $_FILES['imagen']['size'];
+                $directorio = 'uploads/images/';
+                $subir_archivo = $directorio.basename($_FILES['imagen']['name']);
                 
                 if($tipo_archivo == "image/jpeg" || $tipo_archivo == "image/jpg"
                 || $tipo_archivo == "image/png" || $tipo_archivo == "image/gif"){
                     
-                    move_uploaded_file($_FILES['imagen']['tmp_name'], $nombre_archivo);
-                    $imagen = true;
+                        if(move_uploaded_file($_FILES['imagen']['tmp_name'], $subir_archivo)){
+                            echo "Subido con exito";
+                        }else{
+                            echo "Fallo";
+                        }
+
                 }
 
                 if(!empty($codigo) && !empty($nombre) && !empty($fecha_inicio) 
-                && !empty($fecha_cierre) &&!empty($tema) && !empty($nombre_archivo) && !empty($admin)){
+                && !empty($fecha_cierre) &&!empty($tema) && !empty($edad) && !empty($sexo)
+                && !empty($etnia) && !empty($estrato) && !empty($nivel_academico) 
+                && !empty($admin) && !empty($nombre_archivo) ){
 
                     $sondeo = new SondeoModel();
                     $sondeo->setCodigo($codigo);
                     $sondeo->setNombre($nombre);
                     $sondeo->setFechaInicio($fecha_inicio);
                     $sondeo->setFechaCierre($fecha_cierre);
-                    $sondeo->setCodigo($codigo);
-                    $sondeo->setCodigo($codigo);
-                    $sondeo->setCodigo($codigo);
+                    $sondeo->setCodigoTema($tema);
+                    $sondeo->setEdad($edad);
+                    $sondeo->setCodigoSexo($sexo);
+                    $sondeo->setCodigoEtnia($etnia);
+                    $sondeo->setEstrato($estrato);
+                    $sondeo->setCodigoNivelAcademico($nivel_academico);
+                    $sondeo->setUrlImagen($nombre_archivo);
+                    $sondeo->setCodigoAdministrador($admin);
                     $sondeos = $sondeo->guardarSondeo();
 
                     var_dump($sondeos);
@@ -53,13 +74,22 @@
             $tema = new TemaModel();
             $temas = $tema->getAll();
 
+            $sexo = new SexoModel();
+            $sex = $sexo->getAll();
+
+            $etnia = new EtniaModel();
+            $etn = $etnia->getAll();
+
+            $nivel_educativo = new NivelEducativoModel();
+            $niv = $nivel_educativo->getAll();
+
             require_once 'views/sondeo/sondeo.php';
         }
 
         public function mostrarSondeo(){
 
-            $tema = new TemaModel();
-            $temas = $tema->getAll();
+            $sondeo = new SondeoModel();
+            $sondeos = $sondeo->getAll();
 
             require_once 'views/sondeo/sondeosDisponibles.php';
 

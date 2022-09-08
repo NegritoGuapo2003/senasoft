@@ -6,6 +6,11 @@
         private $nombre;
         private $fecha_inicio;
         private $fecha_cierre;
+        private $edad;
+        private $codigo_sexo;
+        private $codigo_etnia;
+        private $estrato;
+        private $codigo_nivel_academico;
         private $codigo_tema;
         private $url_imagen;
         private $adm_codigo;
@@ -65,6 +70,51 @@
             $this->codigo_tema = $this->db->real_escape_string($codigo_tema);
         }
 
+        //GET Y SET PARA LA EDAD
+        public function getEdad(){
+            return $this->edad;
+        }
+
+        public function setEdad($edad){
+            $this->edad = $this->db->real_escape_string($edad);
+        }
+
+        //GET Y SET PARA EL CODIGO_SEXO
+        public function getCodigoSexo(){
+            return $this->codigo_sexo;
+        }
+
+        public function setCodigoSexo($codigo_sexo){
+            $this->codigo_sexo = $this->db->real_escape_string($codigo_sexo);
+        }
+
+        //GET Y SET PARA EL CODIGO ETNIA
+        public function getCodigoEtnia(){
+            return $this->codigo_etnia;
+        }
+
+        public function setCodigoEtnia($codigo_etnia){
+            $this->codigo_etnia = $this->db->real_escape_string($codigo_etnia);
+        }
+
+        //GET Y SET PARA EL ESTRATO
+        public function getEstrato(){
+            return $this->estrato;
+        }
+
+        public function setEstrato($estrato){
+            $this->estrato = $this->db->real_escape_string($estrato);
+        }
+
+        //GET Y SET PARA EL CODIGO
+        public function getCodigoNivelAcademico(){
+            return $this->codigo_nivel_academico;
+        }
+
+        public function setCodigoNivelAcademico($codigo_nivel_academico){
+            $this->codigo_nivel_academico = $this->db->real_escape_string($codigo_nivel_academico);
+        }
+
 
         //GET Y SET PARA EL URL IMAGEN
         public function getUrlImagen(){
@@ -103,7 +153,7 @@
 
         public function guardarSondeo(){
 
-            $sql = "INSERT INTO tblsondeo VALUES({$this->getCodigo()},{$this->getNombre()},{$this->getFechaInicio()},{$this->getFechaCierre()},{$this->getCodigoTema()},{$this->getUrlImagen()},{$this->getCodigoAdministrador()})";
+            $sql = "INSERT INTO tblsondeo VALUES({$this->getCodigo()},'{$this->getNombre()}','{$this->getFechaInicio()}','{$this->getFechaCierre()}',{$this->getCodigoTema()},{$this->getEdad()},{$this->getCodigoSexo()},{$this->getCodigoEtnia()},{$this->getEstrato()},{$this->getCodigoNivelAcademico()},'{$this->getUrlImagen()}',{$this->getCodigoAdministrador()})";;
             $guardar = $this->db->query($sql);
 
             $validado = false;

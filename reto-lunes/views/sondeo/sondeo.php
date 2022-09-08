@@ -13,10 +13,37 @@
     <label for="fecha_cierre">Fecha cierre: </label> 
     <input type="date" name="fecha_cierre">
 
-    <label for="">Tema del sondeo</label>
+    <label for="tema">Tema del sondeo</label>
     <select name="tema" id="">
         <?php while($tema = $temas->fetch_object()): ?>
             <option value="<?=$tema->te_codigo?>"><?=$tema->te_nombre?></option>
+        <?php endwhile; ?>
+    </select><br>
+    <h2>Restricciones</h2><br><hr><br>
+    <label for="edad">Edad: </label>
+    <input type="number" name="edad" >
+
+    <label for="sexo">Sexo: </label>
+    <select name="sexo" id="">
+        <?php while($sexo = $sex->fetch_object()): ?>
+            <option value="<?=$sexo->se_codigo?>"><?=$sexo->se_nombre?></option>
+        <?php endwhile; ?>
+    </select>
+
+    <label for="etnia">Etnia: </label>
+    <select name="etnia" id="">
+        <?php while($etnia = $etn->fetch_object()): ?>
+            <option value="<?=$etnia->et_codigo?>"><?=$etnia->et_nombre?></option>
+        <?php endwhile; ?>
+    </select>
+
+    <label for="estrato">Estrato: </label>
+    <input type="number" name="estrato" >
+
+    <label for="nivel_academico">Nivel Academico: </label>
+    <select name="nivel_academico" id="">
+        <?php while($nivel_a = $niv->fetch_object()): ?>
+            <option value="<?=$nivel_a->ne_codigo?>"><?=$nivel_a->ne_nombre?></option>
         <?php endwhile; ?>
     </select>
 
@@ -26,7 +53,7 @@
     <label for="admin">Codigo admin: </label>
     <input type="number" name="admin" >
 
-    <hr>
+    <br><hr><br>
 
     <h3>Preguntas del sondeo</h3>
 

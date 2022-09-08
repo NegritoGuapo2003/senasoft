@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2022 a las 22:23:45
+-- Tiempo de generación: 08-09-2022 a las 14:17:51
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -33,6 +33,13 @@ CREATE TABLE `tbladministrador` (
   `adm_clave` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tbladministrador`
+--
+
+INSERT INTO `tbladministrador` (`adm_codigo`, `adm_nombre`, `adm_clave`) VALUES
+(1, 'admin', '123');
+
 -- --------------------------------------------------------
 
 --
@@ -43,6 +50,14 @@ CREATE TABLE `tblbarrio_vereda` (
   `bv_codigo` int(11) NOT NULL,
   `bv_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblbarrio_vereda`
+--
+
+INSERT INTO `tblbarrio_vereda` (`bv_codigo`, `bv_nombre`) VALUES
+(1, 'La Loma'),
+(2, 'Palomares');
 
 -- --------------------------------------------------------
 
@@ -120,6 +135,13 @@ CREATE TABLE `tblcondicion` (
   `con_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tblcondicion`
+--
+
+INSERT INTO `tblcondicion` (`con_codigo`, `con_nombre`) VALUES
+(1, 'Mocho del pie');
+
 -- --------------------------------------------------------
 
 --
@@ -130,6 +152,13 @@ CREATE TABLE `tbletnia` (
   `et_codigo` int(11) NOT NULL,
   `et_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbletnia`
+--
+
+INSERT INTO `tbletnia` (`et_codigo`, `et_nombre`) VALUES
+(12, 'Carapana');
 
 -- --------------------------------------------------------
 
@@ -153,6 +182,14 @@ CREATE TABLE `tblmunicipio` (
   `mun_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tblmunicipio`
+--
+
+INSERT INTO `tblmunicipio` (`mun_codigo`, `mun_nombre`) VALUES
+(5142, 'Caracoli'),
+(5147, 'Carepa');
+
 -- --------------------------------------------------------
 
 --
@@ -163,6 +200,14 @@ CREATE TABLE `tblnivel_educativo` (
   `ne_codigo` int(11) NOT NULL,
   `ne_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblnivel_educativo`
+--
+
+INSERT INTO `tblnivel_educativo` (`ne_codigo`, `ne_nombre`) VALUES
+(1, 'Tecnologo'),
+(2, 'Profesional');
 
 -- --------------------------------------------------------
 
@@ -184,8 +229,7 @@ CREATE TABLE `tblnotificacion` (
 
 CREATE TABLE `tblpreguntas` (
   `pr_codigo` int(11) NOT NULL,
-  `pr_nombre` varchar(50) NOT NULL,
-  `te_codigo` int(11) NOT NULL
+  `pr_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -199,6 +243,13 @@ CREATE TABLE `tblregimen` (
   `re_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `tblregimen`
+--
+
+INSERT INTO `tblregimen` (`re_codigo`, `re_nombre`) VALUES
+(1, 'Subsidiado');
+
 -- --------------------------------------------------------
 
 --
@@ -207,8 +258,16 @@ CREATE TABLE `tblregimen` (
 
 CREATE TABLE `tblsexo` (
   `se_codigo` int(11) NOT NULL,
-  `se_nombre` int(11) NOT NULL
+  `se_nombre` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tblsexo`
+--
+
+INSERT INTO `tblsexo` (`se_codigo`, `se_nombre`) VALUES
+(1, 'Hombre'),
+(2, 'Mujer');
 
 -- --------------------------------------------------------
 
@@ -221,6 +280,12 @@ CREATE TABLE `tblsondeo` (
   `so_nombre` varchar(800) NOT NULL,
   `so_fecha_inicio` date NOT NULL,
   `so_fecha_cierre` date NOT NULL,
+  `te_codigo` int(11) NOT NULL,
+  `so_edad` int(11) NOT NULL,
+  `se_codigo` int(11) NOT NULL,
+  `et_codigo` int(11) NOT NULL,
+  `estrato` int(11) NOT NULL,
+  `na_codigo` int(11) NOT NULL,
   `so_imagen` varchar(500) NOT NULL,
   `adm_codigo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -247,6 +312,14 @@ CREATE TABLE `tbltema` (
   `te_codigo` int(11) NOT NULL,
   `te_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbltema`
+--
+
+INSERT INTO `tbltema` (`te_codigo`, `te_nombre`) VALUES
+(1, 'Maltrato Animal'),
+(2, 'Salario Minimo');
 
 -- --------------------------------------------------------
 
@@ -350,8 +423,7 @@ ALTER TABLE `tblnotificacion`
 -- Indices de la tabla `tblpreguntas`
 --
 ALTER TABLE `tblpreguntas`
-  ADD PRIMARY KEY (`pr_codigo`),
-  ADD KEY `fk_te_codigo_tbltema` (`te_codigo`);
+  ADD PRIMARY KEY (`pr_codigo`);
 
 --
 -- Indices de la tabla `tblregimen`
@@ -370,7 +442,8 @@ ALTER TABLE `tblsexo`
 --
 ALTER TABLE `tblsondeo`
   ADD PRIMARY KEY (`so_codigo`),
-  ADD KEY `fk_adm_codigo_tbladministrador` (`adm_codigo`);
+  ADD KEY `fk_adm_codigo_tbladministrador` (`adm_codigo`),
+  ADD KEY `fk_te_codigo_tblcodigo` (`te_codigo`);
 
 --
 -- Indices de la tabla `tblsondeo_pregunta`
@@ -399,13 +472,13 @@ ALTER TABLE `tbltipos_acceso`
 -- AUTO_INCREMENT de la tabla `tbladministrador`
 --
 ALTER TABLE `tbladministrador`
-  MODIFY `adm_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `adm_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tblbarrio_vereda`
 --
 ALTER TABLE `tblbarrio_vereda`
-  MODIFY `bv_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bv_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tblcertificados`
@@ -417,13 +490,13 @@ ALTER TABLE `tblcertificados`
 -- AUTO_INCREMENT de la tabla `tblcondicion`
 --
 ALTER TABLE `tblcondicion`
-  MODIFY `con_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `con_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tbletnia`
 --
 ALTER TABLE `tbletnia`
-  MODIFY `et_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `et_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tblfiltros`
@@ -435,13 +508,13 @@ ALTER TABLE `tblfiltros`
 -- AUTO_INCREMENT de la tabla `tblmunicipio`
 --
 ALTER TABLE `tblmunicipio`
-  MODIFY `mun_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mun_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5148;
 
 --
 -- AUTO_INCREMENT de la tabla `tblnivel_educativo`
 --
 ALTER TABLE `tblnivel_educativo`
-  MODIFY `ne_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ne_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tblnotificacion`
@@ -459,25 +532,19 @@ ALTER TABLE `tblpreguntas`
 -- AUTO_INCREMENT de la tabla `tblregimen`
 --
 ALTER TABLE `tblregimen`
-  MODIFY `re_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `re_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tblsexo`
 --
 ALTER TABLE `tblsexo`
-  MODIFY `se_codigo` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tblsondeo`
---
-ALTER TABLE `tblsondeo`
-  MODIFY `so_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `se_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tbltema`
 --
 ALTER TABLE `tbltema`
-  MODIFY `te_codigo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `te_codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tbltipos_acceso`
@@ -528,16 +595,11 @@ ALTER TABLE `tblnotificacion`
   ADD CONSTRAINT `fk_ciu_documento_tblciudadano` FOREIGN KEY (`ciu_documento`) REFERENCES `tblciudadano` (`ciu_documento`);
 
 --
--- Filtros para la tabla `tblpreguntas`
---
-ALTER TABLE `tblpreguntas`
-  ADD CONSTRAINT `fk_te_codigo_tbltema` FOREIGN KEY (`te_codigo`) REFERENCES `tbltema` (`te_codigo`);
-
---
 -- Filtros para la tabla `tblsondeo`
 --
 ALTER TABLE `tblsondeo`
-  ADD CONSTRAINT `fk_adm_codigo_tbladministrador` FOREIGN KEY (`adm_codigo`) REFERENCES `tbladministrador` (`adm_codigo`);
+  ADD CONSTRAINT `fk_adm_codigo_tbladministrador` FOREIGN KEY (`adm_codigo`) REFERENCES `tbladministrador` (`adm_codigo`),
+  ADD CONSTRAINT `fk_te_codigo_tblcodigo` FOREIGN KEY (`te_codigo`) REFERENCES `tbltema` (`te_codigo`);
 
 --
 -- Filtros para la tabla `tblsondeo_pregunta`

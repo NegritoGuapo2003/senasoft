@@ -7,6 +7,7 @@
 
 
 <?php
+
     session_start();
     if(!isset($_GET['controlador']) || !isset($_GET['accion'])){
         echo "<h1>Index principal</h1>";
@@ -14,7 +15,7 @@
             echo "<br>";
             echo "<hr>";
             echo "<br>";
-            echo "<p>Este es tu codigo para entrar futuramente a tu cuenta: {$_GET['codigo']}</p>";
+            echo "<p style='color:#000;'>Este es tu codigo para entrar futuramente a tu cuenta: ".$_GET['codigo']."</p>";
         }
     }else{
         if(isset($_GET['controlador']) && class_exists($_GET['controlador']."Controller")){

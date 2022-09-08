@@ -18,8 +18,13 @@
         <hr style="border: 1px solid #fff;">
         <br>
         <p>No tienes una cuenta? <a href="<?=url('ciudadano','registro')?>">Registrate!</a></p>
-        <p><a href="<?=url('ciudadano','logout'); ?>">Cerrar sesion</a></p>
-        <p><a href="<?=url('sondeo','registroSondeo'); ?>">Registrar un sondeo</a></p>
+        <?php var_dump($_SESSION['ciudadano']); ?>
+        <?php if(isset($_SESSION['ciudadano']) || isset($_SESSION['admin'])): ?>
+            <p><a href="<?=url('ciudadano','logout'); ?>">Cerrar sesion</a></p>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['ciudadano']) || isset($_SESSION['admin'])): ?>
+            <p><a href="<?=url('sondeo','registroSondeo'); ?>">Registrar un sondeo</a></p>
+        <?php endif; ?>
 
     </div>
 </div>

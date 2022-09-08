@@ -1,7 +1,7 @@
-
-<?php while($sondeo = $sondeos->fetch_object()): ?>
-    
+  
     <div class="sondeo">
+        <?php while($sondeo = $sondeos->fetch_object()): ?>
+        <!-------------VALIDAR LA URL DE LA IMAGEN-------------->
         <?php
 
             if($sondeo->so_imagen == "defecto.jpg"){
@@ -22,7 +22,7 @@
             <p>Fecha de cierre: <?=$sondeo->so_fecha_cierre?></p>
 
         </div>
+        <?php endwhile; ?>
 
     </div>
 
-<?php endwhile; ?>

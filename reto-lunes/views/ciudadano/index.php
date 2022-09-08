@@ -1,1 +1,1 @@
-<?php validarSesion($_SESSION['ciudadano']); ?>
+<?php validarSesion($_SESSION['ciudadano']); var_dump($_SESSION['ciudadano']); ?>

@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -101,17 +102,19 @@ body {
 
 .sondeo {
     width: 100%;
-    height: auto;
+    height: 100%;
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
 }
 
 .sondeo .details-sondeo {
     background: #256F74;
-    width: 50%;
-    height: auto;
+    width: 30%;
+    height: 50vh;
     margin: 30px;
     padding: 0px 0px 20px 0px;
 }
@@ -128,4 +131,47 @@ body {
 .sondeo .details-sondeo h2 {
     margin: 5px;
  }
+
+ .sondeo .details-sondeo a {
+    text-decoration: none;
+ }
+
+.sondeo-detalle .details-sondeo-detalle{
+    height: 150vh;
+    width: 100%;
+}
+
+.sondeo-detalle .details-sondeo-detalle img{
+    width: 90%;
+}
+
+.sondeo-detalle .details-sondeo-detalle p{
+    color: #000 ;
+}
+
+.sondeo-detalle .details-sondeo-detalle a{
+    background-color: #256F74;
+    border-radius: 5px;
+    color: #fff;
+    margin: 15px;
+    text-decoration: none;
+    padding: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.borrar{
+    background-color: #256F74;
+    border-radius: 5px;
+    color: #fff;
+    margin: 15px;
+    text-decoration: none;
+    padding: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
 

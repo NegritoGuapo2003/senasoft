@@ -130,7 +130,20 @@
         }
 
         public function detalleSondeo(){
-            
+
+            if(isset($_GET['id'])){
+                
+                $id = $_GET['id'];
+
+                $detalle = new SondeoModel();
+                $detalle->setCodigo($id);
+                $detalles = $detalle->detallesSondeo();
+
+            }
+
+
+            require_once "views/sondeo/detalleSondeo.php";
+
         }
 
     }

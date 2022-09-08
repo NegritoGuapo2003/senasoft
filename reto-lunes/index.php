@@ -3,12 +3,13 @@
 <?php require_once 'layouts/head.php'; ?>
 <?php require_once 'config/helpers.php'?>
 
-<?php require_once 'layouts/aside.php'; ?>
+<?php if(!isset($_SESSION['ciudadano'])): ?>
+    <?php require_once 'layouts/aside.php'; ?>
+<?php endif; ?>
 
 
 <?php
 
-    session_start();
     if(!isset($_GET['controlador']) || !isset($_GET['accion'])){
         echo "<h1>Index principal</h1>";
         if(isset($_GET['codigo'])){  

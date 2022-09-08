@@ -18,7 +18,7 @@
             <p>Fecha de cierre: <?=$detalles->so_fecha_cierre?></p><br>
             <p>Publicado por <b><?=$detalles->administrador?></b></p>
             <br>
-            <a href="?controlador=preguntas&accion=mostrarPreguntas">Ver Preguntas</a>
+            <a href="?controlador=sondeo&accion=restricciones&id=<?=$detalles->so_codigo?>">Ver Preguntas</a>
         </div>
 
     </div>

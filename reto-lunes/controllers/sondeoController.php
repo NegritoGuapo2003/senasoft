@@ -146,6 +146,23 @@
 
         }
 
+        public function restricciones(){
+
+            if(isset($_GET['id'])){
+                
+                $id = $_GET['id'];
+
+                $sondeo = new SondeoModel();
+                $sondeo->setCodigo($id);
+                $sondeos = $sondeo->detallesSondeo();
+
+            }
+
+
+            require_once "views/preguntas/index.php";
+
+        }
+
     }
 
 ?>

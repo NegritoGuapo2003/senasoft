@@ -223,7 +223,7 @@
 
         public function guardarCiudadano(){
 
-            $sql = "INSERT INTO tblciudadano VALUES('{$this->tipo_documento}','{$this->documento}','{$this->nombre}','{$this->apellidos}',{$this->sexo},'{$this->telefono_fijo}','{$this->celular}','{$this->email}',{$this->codigo_municipio},'{$this->direccion}',{$this->codigo_barrio_vereda},'{$this->fecha_nacimiento}',{$this->codigo_etnia},{$this->codigo_condicion},{$this->estrato},{$this->codigo_nivel_educativo},'{$this->acceso_dispositivos}','{$this->acceso_internet}',{$this->codigo_regimen},'{$this->getCodigoValidacion()}')";
+            $sql = "INSERT INTO tblciudadano VALUES('{$this->tipo_documento}','{$this->documento}','{$this->nombre}','{$this->apellidos}',{$this->sexo},'{$this->telefono_fijo}','{$this->celular}','{$this->email}',{$this->codigo_municipio},'{$this->direccion}',{$this->codigo_barrio_vereda},'{$this->fecha_nacimiento}',{$this->codigo_etnia},{$this->codigo_condicion},{$this->estrato},{$this->codigo_nivel_educativo},'{$this->acceso_dispositivos}','{$this->acceso_internet}',{$this->codigo_regimen},'{$this->getCodigoValidacion()}',TIMESTAMPDIFF(YEAR,'{$this->fecha_nacimiento}',NOW()))";
             $guardar = $this->db->query($sql);
             
             $validado = false;

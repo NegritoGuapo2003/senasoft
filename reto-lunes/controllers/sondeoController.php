@@ -5,12 +5,13 @@
     require_once "models/sexoModel.php";
     require_once "models/etniaModel.php";
     require_once "models/nivelEducativoModel.php";
+    require_once "models/preguntasModel.php";
 
     class SondeoController {
 
         public function sondeoGuardar(){
 
-            if(isset($_POST)){
+            if(isset($_POST) && count($_POST) > 11){
 
                 $codigo = isset($_POST['codigo']) ? (int)$_POST['codigo'] : "" ;
                 $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : "" ;
@@ -65,10 +66,39 @@
                     $sondeo->setCodigoAdministrador($admin);
                     $sondeos = $sondeo->guardarSondeo();
 
-                    var_dump($sondeos);
+                }
+
+                if(count($_POST) >= 11){
+
+                    $cont = count($_POST) - 11;
+
+                    for ($i=0; $i < $cont; $i++) { 
+                        
+                        $nombre_pregunta = $_POST['pregunta'.$i];
+
+                        $codigo_aleatorio = rand(10000,99999);
+
+                        $pregunta = new PreguntasModel();
+                        $pregunta->setCodigo($codigo_aleatorio);
+                        $pregunta->setNombre($nombre_pregunta);
+                        $preguntas = $pregunta->insertarPreguntas();
+
+                        if($preguntas){
+
+                            $pregunta->setCodigoPregunta($codigo_aleatorio);
+                            $pregunta->setCodigoSondeo($codigo);
+                            $preguntas_sondeo = $pregunta->insertarSondeoPregunta();
+
+                            var_dump($preguntas_sondeo);
+
+                        }
+    
+                    }
 
                 }
 
+            }else{
+                echo "Debes generar preguntas para el sondeo";
             }
 
         }
@@ -97,6 +127,10 @@
 
             require_once 'views/sondeo/sondeosDisponibles.php';
 
+        }
+
+        public function detalleSondeo(){
+            
         }
 
     }

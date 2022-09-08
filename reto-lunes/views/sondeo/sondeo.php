@@ -20,7 +20,7 @@
         <?php endwhile; ?>
     </select><br>
     <h2>Restricciones</h2><br><hr><br>
-    <label for="edad">Edad: </label>
+    <label for="edad">Edad:(Mayor a) </label>
     <input type="number" name="edad" >
 
     <label for="sexo">Sexo: </label>
@@ -53,15 +53,12 @@
     <label for="admin">Codigo admin: </label>
     <input type="number" name="admin" >
 
-    <br><hr><br>
+    <br><br>
 
     <h3>Preguntas del sondeo</h3>
+    <br><hr><br>
 
-    <div class="contenedor-preguntas" id="contenedor">
-
-
-
-    </div>
+    <div class="contenedor-preguntas" id="contenedor"></div>
 
     <button type="button" id="pregunta-btn">Crear Pregunta</button>
 

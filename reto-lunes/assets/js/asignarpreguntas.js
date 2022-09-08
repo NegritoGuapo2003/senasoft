@@ -6,6 +6,8 @@ var preguntas = document.getElementById("contenedor");
 
 btn.addEventListener("click", crearPregunta);
 
+var indicePregunta = 0;
+
 function crearPregunta(){
 
     /*
@@ -16,8 +18,8 @@ function crearPregunta(){
 
     var divPregunta = "<div class=\"pregunta\">";
 
-    divPregunta +=          "<label for=\"\">escribe la pregunta</label>";
-    divPregunta +=          "<input type=\"text\">";
+    divPregunta +=          "<label for=\"\">Escribe la pregunta</label>";
+    divPregunta +=          `<input type=\"text\" name='pregunta${indicePregunta++}'>`;
 
     divPregunta +=    "</div>";
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-09-2022 a las 14:17:51
+-- Tiempo de generación: 08-09-2022 a las 14:58:31
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -443,7 +443,10 @@ ALTER TABLE `tblsexo`
 ALTER TABLE `tblsondeo`
   ADD PRIMARY KEY (`so_codigo`),
   ADD KEY `fk_adm_codigo_tbladministrador` (`adm_codigo`),
-  ADD KEY `fk_te_codigo_tblcodigo` (`te_codigo`);
+  ADD KEY `fk_te_codigo_tblcodigo` (`te_codigo`),
+  ADD KEY `fk_et_codigo_tbl` (`et_codigo`),
+  ADD KEY `fk_sexo_codigo_tblsexo` (`se_codigo`),
+  ADD KEY `fk_nacodigo_tblniveleducativo` (`na_codigo`);
 
 --
 -- Indices de la tabla `tblsondeo_pregunta`
@@ -599,6 +602,9 @@ ALTER TABLE `tblnotificacion`
 --
 ALTER TABLE `tblsondeo`
   ADD CONSTRAINT `fk_adm_codigo_tbladministrador` FOREIGN KEY (`adm_codigo`) REFERENCES `tbladministrador` (`adm_codigo`),
+  ADD CONSTRAINT `fk_et_codigo_tbl` FOREIGN KEY (`et_codigo`) REFERENCES `tbletnia` (`et_codigo`),
+  ADD CONSTRAINT `fk_nacodigo_tblniveleducativo` FOREIGN KEY (`na_codigo`) REFERENCES `tblnivel_educativo` (`ne_codigo`),
+  ADD CONSTRAINT `fk_sexo_codigo_tblsexo` FOREIGN KEY (`se_codigo`) REFERENCES `tblsexo` (`se_codigo`),
   ADD CONSTRAINT `fk_te_codigo_tblcodigo` FOREIGN KEY (`te_codigo`) REFERENCES `tbltema` (`te_codigo`);
 
 --

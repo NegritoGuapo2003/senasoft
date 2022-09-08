@@ -1,4 +1,4 @@
-            <script src="assets/js/crearpreguntas.js"></script>
+            <script src="assets/js/asignarpreguntas.js"></script>
             </div>
         </div>
     </body>

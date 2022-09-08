@@ -63,7 +63,7 @@
 
     </div>
 
-    <button id="pregunta-btn">Crear Pregunta</button>
+    <button type="button" id="pregunta-btn">Crear Pregunta</button>
 
     
     <input type="submit" value="Crear Sondeo">
